@@ -11,7 +11,8 @@ public class SavingUserNameUI : MonoBehaviour
 
     void Awake()
     {
-        String userName = PlayerPrefs.GetString("userName");
+        PlayerPrefs.DeleteAll();
+        String userName = PlayerPrefs.GetString("UserName");
         if (userName.Trim().Equals(String.Empty)) return;
         GoToScene();
     }
@@ -22,7 +23,7 @@ public class SavingUserNameUI : MonoBehaviour
         String userName = userNameField.text;
         if (userName.Length >= 3 && userName.Length <= 20)
         {
-            PlayerPrefs.SetString("userName", userName);
+            PlayerPrefs.SetString("UserName", userName);
             GoToScene();
         }
 

@@ -21,7 +21,7 @@ public static class UserDataWrapper
     {
         UserData userData = new UserData
         {
-            userName = PlayerPrefs.GetString("UserName", "John doe"),
+            userName = PlayerPrefs.GetString("UserName"),
             authId = AuthenticationService.Instance.PlayerId
         };
         string payload = JsonUtility.ToJson(userData);
