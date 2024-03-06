@@ -11,7 +11,6 @@ public class SavingUserNameUI : MonoBehaviour
 
     void Awake()
     {
-        PlayerPrefs.DeleteAll();
         String userName = PlayerPrefs.GetString("UserName");
         if (userName.Trim().Equals(String.Empty)) return;
         GoToScene();
