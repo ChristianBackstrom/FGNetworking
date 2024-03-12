@@ -12,6 +12,8 @@ public class FiringAction : NetworkBehaviour
     [SerializeField] Transform bulletSpawnPoint;
 
     [SerializeField] private PlayerAntiCheat playerAntiCheat;
+
+    private NetworkVariable<int> ammo = new(10);
     public override void OnNetworkSpawn()
     {
         playerController.onFireEvent += Fire;
@@ -19,8 +21,7 @@ public class FiringAction : NetworkBehaviour
 
     private void Fire(bool isShooting)
     {
-
-        if (isShooting)
+        if (isShooting && ammo.Value > 0)
         {
             ShootLocalBullet();
         }
@@ -36,7 +37,8 @@ public class FiringAction : NetworkBehaviour
             FindObjectOfType<KickPlayer>().PlayerKickedClientRpc(username);
             return;
         }
-        
+
+        ammo.Value--;
         GameObject bullet = Instantiate(serverSingleBulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
         Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), transform.GetComponent<Collider2D>());
         ShootBulletClientRpc();
