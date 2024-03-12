@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class PlayerAntiCheat : NetworkBehaviour
 {
+    [SerializeField] private NetworkTransformClientAuth networkTransformClientAuth;
     public bool IsMovingTooFast => Vector2.Distance(lastPosition, transform.position) > cheatSpeedThreshold;
 
     [SerializeField] private float cheatSpeedThreshold = 1;
@@ -26,13 +27,13 @@ public class PlayerAntiCheat : NetworkBehaviour
         }
         
         if (!IsServer) return;
-
+        
+        // print($"{SavedClientInformationManager.GetUserData(NetworkObject.OwnerClientId).userName}\n lastPosition: {lastPosition} currentPosition: {transform.position}");
+        
         if (IsMovingTooFast)
         {
             transform.position = lastPosition;
         }
-
-        lastPosition = transform.position;
     }
 
     private void Cheat()

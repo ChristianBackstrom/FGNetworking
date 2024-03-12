@@ -85,6 +85,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8179340824675539013}
   - component: {fileID: 3518325893020864807}
+  - component: {fileID: 9168388246866772785}
   - component: {fileID: 5210888314493061672}
   - component: {fileID: 117897365439605971}
   - component: {fileID: 214913618731102450}
@@ -94,7 +95,7 @@ GameObject:
   - component: {fileID: 1795185787946825641}
   - component: {fileID: 7333831072644650386}
   - component: {fileID: 515302384723911912}
-  - component: {fileID: 9168388246866772785}
+  - component: {fileID: -5963803610178631176}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -133,15 +134,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1749074894
+  GlobalObjectIdHash: 3519813835
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
-  SynchronizeTransform: 1
+  SynchronizeTransform: 0
   ActiveSceneSynchronization: 0
   SceneMigrationSynchronization: 1
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+--- !u!114 &9168388246866772785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3076901462484674528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2b1d66f121bdca44b26fea7c019ca3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  networkTransformClientAuth: {fileID: 5963278380796644495}
+  cheatSpeedThreshold: 1
 --- !u!114 &5210888314493061672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -300,8 +315,10 @@ MonoBehaviour:
   UseQuaternionCompression: 0
   UseHalfFloatPrecision: 0
   InLocalSpace: 0
-  Interpolate: 1
+  Interpolate: 0
   SlerpPosition: 0
+  ServerAuthority:
+    m_InternalValue: 0
 --- !u!114 &7262709456020717196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -428,7 +445,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsMoving:
     m_InternalValue: 0
---- !u!114 &9168388246866772785
+--- !u!114 &-5963803610178631176
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -437,10 +454,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3076901462484674528}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2b1d66f121bdca44b26fea7c019ca3e, type: 3}
+  m_Script: {fileID: 11500000, guid: 80d7c879794dfda4687da0e400131852, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cheatSpeedThreshold: 1
 --- !u!1 &3147725339021067429
 GameObject:
   m_ObjectHideFlags: 0
@@ -883,6 +899,8 @@ MonoBehaviour:
   InLocalSpace: 0
   Interpolate: 1
   SlerpPosition: 0
+  ServerAuthority:
+    m_InternalValue: 0
 --- !u!1 &6418603251894214108
 GameObject:
   m_ObjectHideFlags: 0
