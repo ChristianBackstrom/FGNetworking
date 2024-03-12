@@ -31,8 +31,9 @@ public class FiringAction : NetworkBehaviour
     {
         if (playerAntiCheat.IsMovingTooFast)
         {
-            Debug.Log($"{SavedClientInformationManager.GetUserData(NetworkObject.OwnerClientId).userName}  Cheated");
+            string username = SavedClientInformationManager.GetUserData(NetworkObject.OwnerClientId).userName;
             NetworkManager.Singleton.DisconnectClient(NetworkObject.OwnerClientId);
+            FindObjectOfType<KickPlayer>().PlayerKickedClientRpc(username);
             return;
         }
         

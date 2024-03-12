@@ -34,6 +34,8 @@ public class PlayerAntiCheat : NetworkBehaviour
         {
             transform.position = lastPosition;
         }
+
+        lastPosition = transform.position;
     }
 
     private void Cheat()
