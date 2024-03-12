@@ -32,6 +32,5 @@ public class NetworkServer
         SavedClientInformationManager.AddClient(userData);
 
         response.CreatePlayerObject = true; // Theo
-
     }
 }

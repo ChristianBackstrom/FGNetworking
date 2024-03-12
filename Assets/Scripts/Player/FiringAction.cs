@@ -11,7 +11,7 @@ public class FiringAction : NetworkBehaviour
     [SerializeField] GameObject serverSingleBulletPrefab;
     [SerializeField] Transform bulletSpawnPoint;
 
-
+    [SerializeField] private PlayerAntiCheat playerAntiCheat;
     public override void OnNetworkSpawn()
     {
         playerController.onFireEvent += Fire;
@@ -29,6 +29,13 @@ public class FiringAction : NetworkBehaviour
     [ServerRpc]
     private void ShootBulletServerRpc()
     {
+        if (playerAntiCheat.IsMovingTooFast)
+        {
+            Debug.Log($"{SavedClientInformationManager.GetUserData(NetworkObject.OwnerClientId).userName}  Cheated");
+            NetworkManager.Singleton.DisconnectClient(NetworkObject.OwnerClientId);
+            return;
+        }
+        
         GameObject bullet = Instantiate(serverSingleBulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
         Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), transform.GetComponent<Collider2D>());
         ShootBulletClientRpc();
