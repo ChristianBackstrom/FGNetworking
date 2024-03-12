@@ -28,7 +28,7 @@ public class FiringAction : NetworkBehaviour
     }
 
     [ServerRpc]
-    private void ShootBulletServerRpc()
+    private void ShootBulletServerRpc(ulong ownerNetworkID)
     {
         if (playerAntiCheat.IsMovingTooFast)
         {
@@ -40,6 +40,7 @@ public class FiringAction : NetworkBehaviour
 
         ammo.Value--;
         GameObject bullet = Instantiate(serverSingleBulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
+        bullet.GetComponent<SingleBulletDamage>().OwnerID = ownerNetworkID;
         Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), transform.GetComponent<Collider2D>());
         ShootBulletClientRpc();
     }
@@ -58,6 +59,6 @@ public class FiringAction : NetworkBehaviour
         GameObject bullet = Instantiate(clientSingleBulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
         Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), transform.GetComponent<Collider2D>());
 
-        ShootBulletServerRpc();
+        ShootBulletServerRpc(NetworkObject.OwnerClientId);
     }
 }

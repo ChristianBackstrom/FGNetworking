@@ -24,11 +24,12 @@ public class Health : NetworkBehaviour
         gameManager = FindObjectOfType<GameManager>();
     }
 
-    public void TakeDamage(int damage){
+    public void TakeDamage(int damage, ulong bulletOwnerID)
+    {
         damage = damage < 0 ? damage : -damage;
         currentHealth.Value += damage;
         
-        if (currentHealth.Value <= 0) PlayerDied();
+        if (currentHealth.Value <= 0) PlayerDied(bulletOwnerID);
     }
 
     public void Heal(int health)
@@ -38,7 +39,7 @@ public class Health : NetworkBehaviour
         currentHealth.Value = Mathf.Clamp(currentHealth.Value + health, 0, 100);
     }
 
-    private void PlayerDied()
+    private void PlayerDied(ulong bulletOwnerID)
     {
         lives.Value--;
 
@@ -46,9 +47,9 @@ public class Health : NetworkBehaviour
         {
             gameManager = FindObjectOfType<GameManager>();
         }
-        
-        print(gameManager.gameOptions.Value.UnlimitedLives);
 
+        if (bulletOwnerID != ulong.MaxValue) ScoreCounter.IncreaseScore(bulletOwnerID);
+        
         if (lives.Value > 0 || gameManager.gameOptions.Value.UnlimitedLives)
         {
             Respawn();
