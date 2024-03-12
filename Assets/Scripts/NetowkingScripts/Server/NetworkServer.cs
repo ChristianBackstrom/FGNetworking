@@ -18,6 +18,7 @@ public class NetworkServer
     private void clientDisconnect(ulong networkID)
     {
        SavedClientInformationManager.RemoveClient(networkID);
+       ScoreCounter.RemoveClient(networkID);
     }
 
     private void ConnectionApproval(NetworkManager.ConnectionApprovalRequest request, NetworkManager.ConnectionApprovalResponse response)
@@ -30,6 +31,7 @@ public class NetworkServer
         response.Approved = true;
 
         SavedClientInformationManager.AddClient(userData);
+        ScoreCounter.AddClient(userData.networkID);
 
         response.CreatePlayerObject = true; // Theo
     }
