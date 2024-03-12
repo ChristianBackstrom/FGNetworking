@@ -13,7 +13,7 @@ public class FiringAction : NetworkBehaviour
 
     [SerializeField] private PlayerAntiCheat playerAntiCheat;
 
-    private NetworkVariable<int> ammo = new(10);
+    public NetworkVariable<int> ammo = new(30);
     public override void OnNetworkSpawn()
     {
         playerController.onFireEvent += Fire;

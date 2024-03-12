@@ -12,5 +12,12 @@
             <ui:Button text="Lobbies" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LobbiesButton" class="defaultButtonCLass" />
         </ui:VisualElement>
         <ui:VisualElement name="Panel4" />
+        <ui:VisualElement name="Panel3" class="defaultPanel" style="flex-direction: column; overflow: visible; height: 120px; background-color: rgba(241, 241, 241, 0.6);">
+            <ui:Label tabindex="-1" text="Game Options" parse-escape-sequences="true" display-tooltip-when-elided="true" style="flex-direction: row; align-self: center; -unity-font-style: bold; font-size: 25px; -unity-text-align: upper-center;" />
+            <ui:VisualElement name="Panel3" class="defaultPanel" style="flex-direction: row;">
+                <ui:Label tabindex="-1" text="Unlimited Lives" parse-escape-sequences="true" display-tooltip-when-elided="true" style="flex-direction: row; align-self: center; -unity-font-style: bold; font-size: 16px;" />
+                <ui:Toggle label="Toggle" name="UnlimitedLives" style="flex-direction: row-reverse;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

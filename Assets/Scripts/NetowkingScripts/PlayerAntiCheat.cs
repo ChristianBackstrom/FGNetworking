@@ -29,11 +29,6 @@ public class PlayerAntiCheat : NetworkBehaviour
         if (!IsServer) return;
         
         // print($"{SavedClientInformationManager.GetUserData(NetworkObject.OwnerClientId).userName}\n lastPosition: {lastPosition} currentPosition: {transform.position}");
-        
-        if (IsMovingTooFast)
-        {
-            transform.position = lastPosition;
-        }
 
         lastPosition = transform.position;
     }
