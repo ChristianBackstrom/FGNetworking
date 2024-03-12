@@ -62,14 +62,13 @@ public static class SavedClientInformationManager
 
     public static void RemoveClient(ulong networkID)
     {
-        foreach (var client in savedClientInformation)
+        for (int i = savedClientInformation.Count - 1; i >= 0; i--)
         {
+            SavedClientInformation client = savedClientInformation[i];
             if (networkID == client.networkID)
             {
                 savedClientInformation.Remove(client);
             }
-
         }
-
     }
 }
