@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Scripts/Score/ScoreUICSS.uss?fileID=7433441132597879392&amp;guid=f5eeea088e333ad4ca66507b002b068b&amp;type=3#ScoreUICSS" />
+    <ui:VisualElement name="MainPanel" class="defaultPanel" style="flex-grow: 1; margin-top: 5%; margin-right: 5%; margin-bottom: 5%; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 1%; flex-basis: 50%; justify-content: flex-start; align-items: auto; align-self: stretch; border-left-color: rgba(255, 255, 255, 0); border-right-color: rgba(255, 255, 255, 0); border-top-color: rgba(255, 255, 255, 0); border-bottom-color: rgba(255, 255, 255, 0); border-top-width: 4px; border-right-width: 4px; border-bottom-width: 4px; border-left-width: 4px; flex-direction: row; background-color: rgba(0, 0, 0, 0.35); width: 15%; height: auto;">
+        <ui:ListView name="UserListView" style="justify-content: space-around; align-self: stretch; width: auto; color: rgb(255, 255, 255); -unity-font-style: bold; font-size: 20px;" />
+        <ui:ListView name="ScoreListView" style="align-self: stretch; width: 20px; color: rgb(255, 255, 255); font-size: 20px; -unity-font-style: bold;" />
+    </ui:VisualElement>
+</ui:UXML>

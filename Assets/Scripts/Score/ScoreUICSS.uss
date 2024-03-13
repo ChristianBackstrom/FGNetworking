@@ -1,0 +1,49 @@
+.defaultButtonCLass {
+    width: 140px;
+    height: 40px;
+    font-size: 12px;
+    text-align: center;
+    background-color: beige;
+}
+
+.defaultButtonCLass:hover {
+    background-color: bisque;
+    font-size: 14px;
+}
+
+.defaultButtonCLass:active {
+    color: beige;
+    font-size: 12px;
+}
+
+.notVisible {
+    visibility: hidden;
+}
+
+.visible {
+    visibility: visible;
+}
+
+.headerLabel {
+    background-color: transparent;
+    font-size: 24px;
+    -unity-text-align: upper-center;
+    color: bisque;
+}
+
+.defaultPanel {
+    width: 300px;
+    height: 60px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    float: left;
+    align-self: flex-start;
+    align-items: flex-end;
+    margin-bottom: auto;
+    flex-direction: column;
+}
+
+.unity-base-field__label {
+    visibility: hidden;
+}
