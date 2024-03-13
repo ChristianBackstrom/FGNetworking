@@ -41,13 +41,6 @@ public class ScoreUI : NetworkBehaviour
         UpdateNetworkLists();
         
         if (!IsServer) return;
-
-        foreach (var data in ScoreCounter.GetAllData())
-        {
-            connectedUsers.Add(data.NetworkID);
-            userScores.Add(data.Score);
-            Debug.Log(data.Score);
-        }
     }
 
     private void Update()
