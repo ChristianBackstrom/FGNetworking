@@ -12,11 +12,21 @@ public class FiringAction : NetworkBehaviour
     [SerializeField] Transform bulletSpawnPoint;
 
     [SerializeField] private PlayerAntiCheat playerAntiCheat;
+    [SerializeField] private int maxAmmo = 30;
 
-    public NetworkVariable<int> ammo = new(30);
+    public NetworkVariable<int> ammo;
     public override void OnNetworkSpawn()
     {
         playerController.onFireEvent += Fire;
+        if (!IsServer) return;
+        ammo.Value = maxAmmo;
+    }
+
+    public void ReplenishAmmo()
+    {
+        if (!IsServer) return;
+
+        ammo.Value = maxAmmo;
     }
 
     private void Fire(bool isShooting)
