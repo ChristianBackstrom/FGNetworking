@@ -14,17 +14,25 @@ public class Health : NetworkBehaviour
 
     public GameManager gameManager;
 
+    public NetworkVariable<int> shield = new(2); 
+
 
     public override void OnNetworkSpawn()
     {
         if(!IsServer) return;
-        currentHealth.Value = 30;
+        currentHealth.Value = 100;
         lives.Value = 3;
         
         gameManager = FindObjectOfType<GameManager>();
     }
 
-    public void TakeDamage(int damage){
+    public void TakeDamage(int damage)
+    {
+        if (shield.Value > 0)
+        {
+            shield.Value--;
+            return;
+        }
         damage = damage < 0 ? damage : -damage;
         currentHealth.Value += damage;
         
@@ -54,12 +62,19 @@ public class Health : NetworkBehaviour
             Respawn();
         }
     }
+
+    public void ReplenishShield()
+    {
+        if (!IsServer) return;
+        
+        shield.Value = 2;
+    }
     
     private void Respawn()
     {
         Vector3 randomPosition = new (Random.Range(-4, 4),Random.Range(-2, 2));
         GetComponent<FiringAction>().ammo.Value = 30;
-        currentHealth.Value = 30;
+        currentHealth.Value = 100;
         RespawnClientRpc(randomPosition);
     }
     
