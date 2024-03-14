@@ -317,8 +317,6 @@ MonoBehaviour:
   InLocalSpace: 0
   Interpolate: 0
   SlerpPosition: 0
-  ServerAuthority:
-    m_InternalValue: 0
 --- !u!114 &7262709456020717196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -336,6 +334,10 @@ MonoBehaviour:
   serverSingleBulletPrefab: {fileID: 2699881094025181072, guid: 5a0f856cf7b9d3c4abbaba622df545d5, type: 3}
   bulletSpawnPoint: {fileID: 662702000496822912}
   playerAntiCheat: {fileID: 9168388246866772785}
+  maxAmmo: 30
+  shootCooldown: 0.5
+  ammo:
+    m_InternalValue: 0
 --- !u!114 &1795185787946825641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -350,6 +352,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth:
     m_InternalValue: 100
+  lives:
+    m_InternalValue: 0
+  gameManager: {fileID: 0}
 --- !u!114 &7333831072644650386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -899,8 +904,6 @@ MonoBehaviour:
   InLocalSpace: 0
   Interpolate: 1
   SlerpPosition: 0
-  ServerAuthority:
-    m_InternalValue: 0
 --- !u!1 &6418603251894214108
 GameObject:
   m_ObjectHideFlags: 0

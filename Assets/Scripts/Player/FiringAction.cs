@@ -13,8 +13,14 @@ public class FiringAction : NetworkBehaviour
 
     [SerializeField] private PlayerAntiCheat playerAntiCheat;
     [SerializeField] private int maxAmmo = 30;
+    [SerializeField] private float shootCooldown = 2f;
 
     public NetworkVariable<int> ammo;
+
+    private NetworkVariable<bool> canShoot = new(true);
+
+    private float timeSinceLastShot = 0;
+    
     public override void OnNetworkSpawn()
     {
         playerController.onFireEvent += Fire;
@@ -31,10 +37,21 @@ public class FiringAction : NetworkBehaviour
 
     private void Fire(bool isShooting)
     {
-        if (isShooting && ammo.Value > 0)
+        if (isShooting && ammo.Value > 0 && canShoot.Value)
         {
             ShootLocalBullet();
         }
+    }
+
+    private void Update()
+    {
+        if (!IsServer) return;
+
+        timeSinceLastShot += Time.deltaTime;
+        
+        if (timeSinceLastShot < shootCooldown || canShoot.Value) return;
+
+        canShoot.Value = true;
     }
 
     [ServerRpc]
@@ -47,6 +64,10 @@ public class FiringAction : NetworkBehaviour
             FindObjectOfType<KickPlayer>().PlayerKickedClientRpc(username);
             return;
         }
+        
+        if (!canShoot.Value) return;
+        timeSinceLastShot = 0;
+        canShoot.Value = false;
 
         ammo.Value--;
         GameObject bullet = Instantiate(serverSingleBulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
