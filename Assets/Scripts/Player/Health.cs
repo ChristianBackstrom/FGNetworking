@@ -60,7 +60,10 @@ public class Health : NetworkBehaviour
         if (lives.Value > 0 || gameManager.gameOptions.Value.UnlimitedLives)
         {
             Respawn();
+            return;
         }
+        
+        NetworkManager.Singleton.DisconnectClient(NetworkObject.OwnerClientId);
     }
 
     public void ReplenishShield()
